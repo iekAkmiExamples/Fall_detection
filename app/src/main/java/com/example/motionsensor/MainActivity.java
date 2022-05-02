@@ -43,8 +43,21 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Not all sensors are available", Toast.LENGTH_SHORT).show();
             //stop process
         }
-        sensorManager.registerListener(accelerometerSensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
+    }
+
+    @Override
+    protected void onResume() {
+        // Register a listener for the sensor.
+        super.onResume();
+        sensorManager.registerListener(accelerometerSensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        // Be sure to unregister the sensor when the activity pauses.
+        super.onPause();
+        sensorManager.unregisterListener(accelerometerSensorEventListener);
     }
 
 }
