@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MotionSensor</string>
+    <string name="title">Fall Detection App</string>
+    <string name="alert">Falling</string>
+</resources>
