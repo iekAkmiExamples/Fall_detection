@@ -22,7 +22,7 @@ public class AccelerometerSensorEventListener implements SensorEventListener {
     final Handler handler;
 
     public AccelerometerSensorEventListener(Context activityContext, TextView alertView) {
-        handler = new Handler(Looper.getMainLooper());
+        this.handler = new Handler(Looper.getMainLooper());
         this.alertView = alertView;
         this.activityContext = activityContext;
     }
@@ -33,7 +33,7 @@ public class AccelerometerSensorEventListener implements SensorEventListener {
         double x = sensorEvent.values[0];
         double y = sensorEvent.values[1];
         double z = sensorEvent.values[2];
-
+        //mathematics detection
         double loAccelerationReader = Math.sqrt(
                 Math.pow(x, 2) +
                 Math.pow(y, 2) +
@@ -50,11 +50,11 @@ public class AccelerometerSensorEventListener implements SensorEventListener {
             MediaPlayer mediaPlayer = MediaPlayer.create(this.activityContext, R.raw.alarm);
             mediaPlayer.start();
             //check text color and background in order to show the event
-            alertView.setText(R.string.alert);
-            alertView.setTextColor(Color.WHITE);
-            alertView.setBackgroundColor(Color.RED);
+            this.alertView.setText(R.string.alert);
+            this.alertView.setTextColor(Color.WHITE);
+            this.alertView.setBackgroundColor(Color.RED);
             //use a handler to change the appearance at the end of the event
-            handler.postDelayed(new Runnable() {
+            this.handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     alertView.setText(R.string.title);

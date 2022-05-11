@@ -26,16 +26,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //UI elements
-        alertView = findViewById(R.id.TextAlert);
+        this.alertView = findViewById(R.id.TextAlert);
 
         //sensors objects
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        accelerometerSensorEventListener = new AccelerometerSensorEventListener(this.getApplicationContext(),alertView);
+        this.sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        this.accelerometerSensorEventListener = new AccelerometerSensorEventListener(this.getApplicationContext(),alertView);
         //get sensor
-        accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        this.accelerometerSensor = this.sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         //check if sensor exists
-        if (accelerometerSensor != null){
+        if (this.accelerometerSensor != null){
             // Success!
             Toast.makeText(MainActivity.this, "All sensors are available", Toast.LENGTH_SHORT).show();
         } else {
@@ -48,16 +48,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        // Register a listener for the sensor.
         super.onResume();
-        sensorManager.registerListener(accelerometerSensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        // Register a listener for the sensor.
+        this.sensorManager.registerListener(this.accelerometerSensorEventListener, this.accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     protected void onPause() {
-        // Be sure to unregister the sensor when the activity pauses.
         super.onPause();
-        sensorManager.unregisterListener(accelerometerSensorEventListener);
+        // Be sure to unregister the sensor when the activity pauses.
+        this.sensorManager.unregisterListener(this.accelerometerSensorEventListener);
     }
 
 }
